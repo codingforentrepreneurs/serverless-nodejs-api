@@ -20,4 +20,9 @@ app.use((req, res, next) => {
   });
 });
 
+// server-full app
+// app.listen(3000, ()=>{
+// console.log("running at http://localhost:3000")
+// })
+
 module.exports.handler = serverless(app);

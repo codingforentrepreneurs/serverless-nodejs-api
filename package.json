@@ -2,13 +2,17 @@
   "name": "serverless-nodejs-api",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {
+  "scripts": {
+    "dev": "serverless offline --stage dev"
+  },
+  "dependen cies": {
     "@neondatabase/serverless": "^0.7.2",
     "drizzle-orm": "^0.29.3",
     "express": "^4.18.2",
     "serverless-http": "^3.1.1"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.20.13"
+    "drizzle-kit": "^0.20.13",
+    "serverless-offline": "^13.3.3"
   }
 }
