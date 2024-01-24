@@ -15,6 +15,13 @@ functions:
     events:
       - httpApi: '*'
 
+custom:
+  dotenv:
+    exclude:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
