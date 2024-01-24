@@ -67,7 +67,12 @@ Use [this gist](https://gist.github.com/codingforentrepreneurs/03f6ddb7ba284e4f8
                 "s3:PutAccelerateConfiguration",
                 "s3:GetEncryptionConfiguration",
                 "s3:PutEncryptionConfiguration",
-                "s3:DeleteBucketPolicy"
+                "s3:DeleteBucketPolicy",
+                "s3:PutBucketTagging",
+                "s3:UntagResource",
+                "s3:TagResource",
+                "s3:GetBucketTagging",
+                "s3:ListTagsForResource"
             ],
             "Resource": [
                 "arn:aws:s3:::serverless-*serverlessdeploy*"
