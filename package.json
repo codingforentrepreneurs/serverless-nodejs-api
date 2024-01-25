@@ -6,7 +6,8 @@
     "dev": "serverless offline --stage dev",
     "info": "serverless info --stage prod --region us-east-2",
     "deploy": "serverless deploy --stage prod --region us-east-2",
-    "remove": "serverless remove --stage prod --region us-east-2"
+    "remove": "serverless remove --stage prod --region us-east-2",
+    "generate": "drizzle-kit generate:pg --config=drizzle.config.js"
   },
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.499.0",
