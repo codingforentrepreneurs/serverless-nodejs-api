@@ -8,6 +8,13 @@
       "when": 1706213535629,
       "tag": "0000_common_wolfpack",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1706214643458,
+      "tag": "0001_quick_misty_knight",
+      "breakpoints": true
     }
   ]
 }

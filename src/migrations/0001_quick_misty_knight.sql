@@ -1,0 +1,1 @@
+ALTER TABLE "leads" ADD COLUMN "description" text DEFAULT 'This is my comment';
