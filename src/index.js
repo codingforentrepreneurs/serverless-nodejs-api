@@ -1,37 +1,15 @@
 const serverless = require("serverless-http");
 const express = require("express");
-const AWS = require("aws-sdk")
-const { neon, neonConfig } = require('@neondatabase/serverless'); //commonjs
-
-const AWS_REGION='us-east-2'
-const STAGE = process.env.STAGE || 'prod'
-
+const {getDbClient} = require('./db/clients')
 const app = express();
-const ssm = new AWS.SSM({region: AWS_REGION})
-
-const DATABASE_URL_SSM_PARAM=`/serverless-nodejs-api/${STAGE}/database-url`
-
-
-async function dbClient(){
-  // for http connections
-  // non-poooling
-  const paramStoreData = await ssm.getParameter({
-      Name: DATABASE_URL_SSM_PARAM,
-      WithDecryption: true
-  }).promise()
-  // console.log(paramStoreData.Parameter.Value)
-  // const dbUrl = ??
-  neonConfig.fetchConnectionCache = true
-  const sql = neon(paramStoreData.Parameter.Value);
-  return sql
-}
 
 
 app.get("/", async (req, res, next) => {
   console.log(process.env.DEBUG )
-  const sql = await dbClient()
+  const sql = await getDbClient()
+  const now = Date.now()
   const [dbNowResult] = await sql`select now();`
-  const delta = (Date.now() - dbNowResult.now.getTime()) / 1000
+  const delta = (dbNowResult.now.getTime() - now) / 1000
   return res.status(200).json({
     message: "Hello from root!",
     delta: delta,

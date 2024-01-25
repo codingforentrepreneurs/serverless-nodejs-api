@@ -4,12 +4,13 @@
   "description": "",
   "scripts": {
     "dev": "serverless offline --stage dev",
+    "info": "serverless info --stage prod --region us-east-2",
     "deploy": "serverless deploy --stage prod --region us-east-2",
     "remove": "serverless remove --stage prod --region us-east-2"
   },
   "dependencies": {
+    "@aws-sdk/client-ssm": "^3.499.0",
     "@neondatabase/serverless": "^0.7.2",
-    "aws-sdk": "^2.1543.0",
     "drizzle-orm": "^0.29.3",
     "express": "^4.18.2",
     "serverless-http": "^3.1.1"
