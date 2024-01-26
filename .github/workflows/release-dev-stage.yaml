@@ -1,13 +1,17 @@
 name: Release Dev Stage
 
 on:
-  # push:
-  #   branches: [ dev ]
+  push:
+    branches: [ dev ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      API_KEY: ${{ secrets.NEON_API_KEY }}
     steps:
     - uses: actions/checkout@v4
       with:
