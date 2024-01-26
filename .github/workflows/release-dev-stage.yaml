@@ -34,3 +34,9 @@ jobs:
       run: |
         export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
         npx tsx src/cli/putSecrets.js dev $DB_URL
+    - name: Deploy Dev Stage
+      run: |
+        npm run deploy-dev-stage
+    - name: Start Pull request
+      run: |
+        npm run info-dev-stage
