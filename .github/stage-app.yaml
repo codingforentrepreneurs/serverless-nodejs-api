@@ -20,7 +20,7 @@ jobs:
     - name: Install Neon
       run: npm install -g neonctl
     - name: Login to Neon via API
-      run: neonctl auth --api-key
+      run: neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
     - name: Delete Previous Branch
       run: neonctl delete branch dev
       continue-on-error: true
