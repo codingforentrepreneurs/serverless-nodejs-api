@@ -22,10 +22,10 @@ jobs:
     - name: Install Neon
       run: npm install -g neonctl
     - name: Delete Previous Branch
-      run: neonctl delete branch dev --api-key ${{ env.API_KEY }}
+      run: neonctl branches delete dev --api-key ${{ env.API_KEY }}
       continue-on-error: true
     - name: Create Branched Database 
-      run: neonctl create branch --name dev --api-key ${{ env.API_KEY }}
+      run: neonctl branches create --name dev --api-key ${{ env.API_KEY }}
     - name: Branch Connection String in Parameter Store
       run: |
         export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
