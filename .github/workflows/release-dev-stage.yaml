@@ -13,6 +13,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       API_KEY: ${{ secrets.NEON_API_KEY }}
       STAGE: dev
+      GH_TOKEN: ${{ github.token }}
     steps:
     - uses: actions/checkout@v4
       with:
