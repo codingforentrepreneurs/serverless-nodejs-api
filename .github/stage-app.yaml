@@ -1,0 +1,34 @@
+name: Stage Dev Version
+
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20.11"
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
+    - name: Install Neon
+      run: npm install -g neonctl
+    - name: Login to Neon via API
+      run: neonctl auth --api-key
+    - name: Delete Previous Branch
+      run: neonctl delete branch dev
+      continue-on-error: true
+    - name: Create Branched Database 
+      run: neonctl create branch --name dev
+    - name: Branch Connection String in Parameter Store
+      run: |
+        export DB_URL=$(neonctl connection-string --branch dev)
+        npx tsx src/cli/putSecret.js dev $DB_URL
+    - name: Deploy
+      run: npm run deploy-dev-stage
