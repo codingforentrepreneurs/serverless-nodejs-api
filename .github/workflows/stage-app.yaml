@@ -13,6 +13,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       STAGE: dev
+      GH_TOKEN: ${{ github.token }}
     steps:
     - uses: actions/checkout@v4
       with:
@@ -40,7 +41,6 @@ jobs:
     - name: Stage Info
       run: |
         export STAGE_INFO=$(npx serverless info --stage dev --region us-east-2) >> $GITHUB_ENV
-
     - name: Create Pull Request
       run: |
         PR_BRANCH=$(git branch --show-current)
