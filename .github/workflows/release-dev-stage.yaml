@@ -12,6 +12,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       API_KEY: ${{ secrets.NEON_API_KEY }}
+      STAGE: dev
     steps:
     - uses: actions/checkout@v4
       with:
@@ -37,6 +38,9 @@ jobs:
     - name: Deploy Dev Stage
       run: |
         npm run deploy-dev-stage
-    - name: Start Pull request
+    - name: Create Pull request
       run: |
-        npm run info-dev-stage
+        PR_BRANCH=$(git branch --show-current)
+        DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+        export STAGE_INFO=$(npm run info-dev-stage)
+        gh pr create --title "Auto Pull Request for Dev Stage" --body "Stage Data $STAGE_INFO" --head $PR_BRANCH --repo $GITHUB_REPOSITORY
