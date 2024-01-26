@@ -1,8 +1,6 @@
 name: Stage Dev Version
 
 on:
-  push:
-    branches: [ dev ]
   workflow_dispatch:
 
 jobs:
