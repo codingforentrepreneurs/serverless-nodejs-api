@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.NEON_API_KEY }}
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -19,16 +21,14 @@ jobs:
       run: npm install
     - name: Install Neon
       run: npm install -g neonctl
-    - name: Login to Neon via API
-      run: neonctl auth --api-key ${{ secrets.NEON_API_KEY }}
     - name: Delete Previous Branch
-      run: neonctl delete branch dev
+      run: neonctl delete branch dev --api-key ${{ env.API_KEY }}
       continue-on-error: true
     - name: Create Branched Database 
-      run: neonctl create branch --name dev
+      run: neonctl create branch --name dev --api-key ${{ env.API_KEY }}
     - name: Branch Connection String in Parameter Store
       run: |
-        export DB_URL=$(neonctl connection-string --branch dev)
+        export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
         npx tsx src/cli/putSecret.js dev $DB_URL
     - name: Deploy
       run: npm run deploy-dev-stage
