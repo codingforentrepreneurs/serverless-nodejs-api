@@ -19,8 +19,8 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm install
-    - name: Install Neon
-      run: npm install -g neonctl
+    - name: Install Neon and tsx
+      run: npm install -g neonctl tsx
     - name: Delete Previous Branch
       run: neonctl branches delete dev --api-key ${{ env.API_KEY }}
       continue-on-error: true
