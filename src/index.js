@@ -8,7 +8,6 @@ const STAGE = process.env.STAGE || 'prod'
 app.use(express.json())
 
 app.get("/", async (req, res, next) => {
-  console.log(process.env.DEBUG )
   const sql = await getDbClient()
   const now = Date.now()
   const [dbNowResult] = await sql`select now();`
