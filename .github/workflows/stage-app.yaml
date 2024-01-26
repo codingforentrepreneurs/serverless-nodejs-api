@@ -40,7 +40,8 @@ jobs:
       run: npm run deploy-dev-stage
     - name: Stage Info
       run: |
-        echo 'STAGE_INFO=$(npx serverless info --stage dev --region us-east-2)' >> $GITHUB_ENV
+        export STAGE_INFO=$(npx serverless info --stage dev --region us-east-2)
+        echo 'STAGE_INFO=$STAGE_INFO' >> $GITHUB_ENV
     - name: Create Pull Request
       run: |
         PR_BRANCH=$(git branch --show-current)
