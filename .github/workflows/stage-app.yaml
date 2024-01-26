@@ -36,4 +36,4 @@ jobs:
     - name: Deploy
       run: npm run deploy-dev-stage
     - name: Stage Info
-      run: serverless info --stage dev --region us-east-2
+      run: npx serverless info --stage dev --region us-east-2
