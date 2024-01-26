@@ -15,7 +15,6 @@ if (require.main === module) {
     console.log("Updating database URL")
     const [stage, dbUrl] = args
     secrets.putDatabaseUrl(stage, dbUrl).then(val=>{
-        console.log(val)
         console.log(`Secret set`)
         process.exit(0)
     }).catch(err=>{
