@@ -7,7 +7,6 @@ const app = express();
 const STAGE = process.env.STAGE || 'prod'
 app.use(express.json())
 
-console.log('test')
 app.get("/", async (req, res, next) => {
   console.log(process.env.DEBUG )
   const sql = await getDbClient()
