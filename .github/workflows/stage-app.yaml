@@ -35,3 +35,5 @@ jobs:
         npx tsx src/cli/putSecrets.js dev $DB_URL
     - name: Deploy
       run: npm run deploy-dev-stage
+    - name: Stage Info
+      run: serverless info --stage dev --region us-east-2
