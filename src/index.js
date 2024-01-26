@@ -1,6 +1,7 @@
 const serverless = require("serverless-http");
 const express = require("express");
 const crud = require('./db/crud')
+const validators = require('./db/validators')
 const {getDbClient} = require('./db/clients')
 const app = express();
 
@@ -34,11 +35,22 @@ app.get("/leads", async (req, res, next) => {
 
 app.post("/leads", async (req, res, next) => {
   // POST -> create data
-  const data = await req.body
+  const postData = await req.body
   // validation???
+  const {data, hasError, message} = await validators.validateLead(postData)
+  if (hasError === true) {
+    return res.status(400).json({
+      message: message ? message : "Invalid request. please try again",
+    });
+  } else if (hasError === undefined) {
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+
   const result = await crud.newLead(data)
   // insert data to the database
-  return res.status(200).json({
+  return res.status(201).json({
     results: result,
   });
 });
