@@ -1,0 +1,25 @@
+name: Deploy Production App
+
+on:
+  # pull_request:
+  #   types: [ closed ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20.11"
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
+    - name: Deploy
+      run: npm run deploy
