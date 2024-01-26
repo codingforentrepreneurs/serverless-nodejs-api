@@ -7,7 +7,7 @@ provider:
   runtime: nodejs20.x
   environment:
     DEBUG: ${env:DEBUG, 0}
-    DATABASE_URL: ${env:DATABASE_URL, "fallback value"}
+    STAGE: ${env:STAGE, "prod"}
   iam:
     role:
       name: serverless-my-ssm-role
