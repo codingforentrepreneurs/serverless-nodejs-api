@@ -37,7 +37,7 @@ jobs:
       run: npm run deploy-dev-stage
     - name: Stage Info
       run: |
-        export STAGE_INFO=$(npx serverless info --stage dev --region us-east-2)
+        export STAGE_INFO=$(npx serverless info --stage dev --region us-east-2) >> $GITHUB_ENV
     - name: Create Pull Request to Main
       uses: peter-evans/create-pull-request@v5
       with:
