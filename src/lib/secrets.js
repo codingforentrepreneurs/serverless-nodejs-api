@@ -5,8 +5,6 @@ const { SSMClient,
 const AWS_REGION='us-east-2'
 const STAGE = process.env.STAGE || 'prod'
 
-console.log('example')
-
 async function getDatabaseUrl(){
     const DATABASE_URL_SSM_PARAM=`/serverless-nodejs-api/${STAGE}/database-url`
   const client = new SSMClient({region: AWS_REGION})
