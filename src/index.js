@@ -7,6 +7,7 @@ const app = express();
 const STAGE = process.env.STAGE || 'prod'
 app.use(express.json())
 
+
 app.get("/", async (req, res, next) => {
   console.log(process.env.DEBUG )
   const sql = await getDbClient()
@@ -27,7 +28,7 @@ app.get("/path", (req, res, next) => {
 
 
 app.get("/leads", async (req, res, next) => {
-  const results = await crud.getLeads()
+  const results = await crud.listLeads()
   return res.status(200).json({
     results: results,
   });
