@@ -27,14 +27,14 @@ app.get("/path", (req, res, next) => {
 });
 
 
-app.get("/leads", async (req, res, next) => {
+app.get("/api/leads", async (req, res, next) => {
   const results = await crud.listLeads()
   return res.status(200).json({
     results: results,
   });
 });
 
-app.post("/leads", async (req, res, next) => {
+app.post("/api/leads", async (req, res, next) => {
   // POST -> create data
   const postData = await req.body
   // validation???
