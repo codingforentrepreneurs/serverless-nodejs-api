@@ -36,9 +36,13 @@ jobs:
       run: |
         export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
         npx tsx src/cli/putSecrets.js dev $DB_URL
-    - name: Branch Info
+    - name: Deploy dev stage
+      run: |
+        npm run deploy-dev-stage
+    - name: Dev Stage Pull Request
       run: |
         export PR_BRANCH=$(git branch --show-current)
         export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
         echo "$PR_BRANCH and $DEFAULT_BRANCH"
-        gh pr create --title "Automated PR from Dev Stage" --body "Coming Soon" --base $DEFAULT_BRANCH --head $PR_BRANCH --repo $GITHUB_REPOSITORY
+        export DEV_STAGE_INFO=$(npm run info-dev-stage)
+        gh pr create --title "Automated PR from Dev Stage" --body "$DEV_STAGE_INFO" --base $DEFAULT_BRANCH --head $PR_BRANCH --repo $GITHUB_REPOSITORY
