@@ -41,3 +41,4 @@ jobs:
         export PR_BRANCH=$(git branch --show-current)
         export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
         echo "$PR_BRANCH and $DEFAULT_BRANCH"
+        gh pr create --title "Automated PR from Dev Stage" --body "Coming Soon" --base $DEFAULT_BRANCH --head $PR_BRANCH --repo $GITHUB_REPOSITORY
