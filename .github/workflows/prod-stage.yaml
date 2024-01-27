@@ -3,13 +3,13 @@ name: Deploy Production App
 on:
   # push:
   #   branches: [ main ]
-  # pull_request:
-  #   types: [ closed ]
+  pull_request:
+    types: [ closed ]
   workflow_dispatch:
 
 jobs:
   build:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
