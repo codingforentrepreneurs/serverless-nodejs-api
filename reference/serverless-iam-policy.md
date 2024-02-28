@@ -178,6 +178,15 @@ Use [this gist](https://gist.github.com/codingforentrepreneurs/03f6ddb7ba284e4f8
         {
             "Effect": "Allow",
             "Action": [
+                "iam:TagRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::AWS_ID:role/serverless-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
                 "iam:GetRole",
                 "iam:CreateRole",
                 "iam:PutRolePolicy",
