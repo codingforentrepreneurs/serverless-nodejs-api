@@ -180,6 +180,7 @@ Use [this gist](https://gist.github.com/codingforentrepreneurs/03f6ddb7ba284e4f8
             "Action": [
                 "iam:GetRole",
                 "iam:CreateRole",
+                "iam:TagRole",
                 "iam:PutRolePolicy",
                 "iam:DeleteRolePolicy",
                 "iam:DeleteRole"
